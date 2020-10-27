@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'',include('myawwards.urls')),
     url(r'accounts/',include('registration.backends.simple.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^logout/',views.LogoutView.as_view,{'next_page':'/'}),
+    url(r'^logout/',views.LogoutView.as_view(),{'next_page':'/'}),
 ]
