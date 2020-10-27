@@ -30,10 +30,10 @@ class Projects(models.Model):
         self.delete()
     
     @classmethod
-    def all_projects(cls):
+    def all_posts(cls):
         return cls.objects.all()
 
-    def save_project(self):
+    def save_post(self):
         self.save()
 
 
