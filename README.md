@@ -15,7 +15,7 @@ To get the project .......
 ```
 ##### Navigate into the folder and install requirements  
  ```bash 
-cd Gallery pip install -r requirements.txt 
+cd Awwards pip install -r requirements.txt 
 ```
 ##### Install and activate Virtual  
  ```bash 
@@ -59,8 +59,8 @@ Open the application on your browser `127.0.0.1:8000`.
   
 # API
 This application has two main API end-points
-The profile end-point `https://mmyawwards.herokuapp.com/api/profile/`
-The projects end-point `https://mmyawwards.herokuapp.com/api/projects/`
+* The profile end-point `https://mmyawwards.herokuapp.com/api/profile/`
+* The projects end-point `https://mmyawwards.herokuapp.com/api/projects/`
 
 ## Behavior Driven Development
 
