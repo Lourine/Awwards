@@ -1,0 +1,125 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{{block.super}}
+{%block content%}
+{%for i in projects%}
+<div style="background-image:url({{i.image.url}});" class=" single">
+  <div class="overlay">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-md-9">
+          <h1 class="hed">{{i.name}}</h1>
+          <p class="i">by <b class='b'>{{i.user}} </b> with a Rating of <strong> <b class='b'>{{average}}</strong> </b></p>
+          <div class="design">
+
+              <a target="_blank"  href="{{i.link}}">{{design}}</a>
+              <i id="de">design</i>
+              <a target="_blank" href="{{i.link}}">{{usability}}</a>
+              <i id="us">usability</i>
+              <a target="_blank" class='b' href="{{i.link}}">{{content}}</a>
+              <i  id="con">content</i>
+              <a target="_blank" class='c' href="{{i.link}}">{{average}}</a>
+              <i  id="ave">Average Score</i>
+              
+
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          {%if user.is_authenticated%}
+
+          <button id='love' class="btn btn-outline-default" type="button" name="button">Rate</button>
+          {%if user.id   not in   auth   %}
+          <br>
+          <div class="form animated fadeIn">
+            <form id='send' class="" action="/project/{{i.id}}/" method="post">
+              {%csrf_token%}
+              {%bootstrap_form form%}
+              <button class="btn btn-outline-default" type="submit" name="button">Submit</button>
+            </form>
+
+          </div>
+          {%else%}
+          <p class="alert alert-info">Thanks for rating This app</p>
+          {%endif%}
+          {%else%}
+            <a href="/accounts/login/"><button class="btn btn-outline-default" type="button" name="button">Login to rate</button></a>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+{%endfor%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    {%for project in projects%}
+    <div class="col-md-8">
+      <br>
+      <p class="head">{{project.description}}</p>
+      <div class="col-md-3">
+        <a id='visit' class="btn btn-outline-default bg-default" href="{{project.link}}">Visit site</a>
+      </div>
+      <br>
+
+    </div>
+    {%endfor%}
+    <div class="col-md-2"></div>
+
+  </div>
+  <hr class="bg-default">
+  <div class="row">
+    
+    <div class="col-md-12">
+      <br><br>
+
+      <div class="card comments">
+        <div class="card-header">
+          <h4> Votes by  {{all|length}} users </h4>
+        </div>
+        <div class="list-group">
+          <ul class="list-group">
+            {%if all%}
+
+            <table id='comm' class="table">
+              <th>Voters</th>
+              <th>Rating</th>
+             
+              {%for us in all%}
+              <tr>
+
+                <td>{{us.user}}</td>
+                <td>  <div class="dsign">
+                      <a href="">{{us.design}}.0</a>
+                      <a href="">{{us.usability}}.0</a>
+                      <a class='b' href="">{{us.content}}.0</a>
+
+
+                  </div></td>
+
+                               </tr>
+              {%endfor%}
+
+            </table>
+
+            {%else%}
+            <li class="list-group-item alert alert-info">No votes Available</li>
+
+            {%endif%}
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+   
+
+{%endblock%}
